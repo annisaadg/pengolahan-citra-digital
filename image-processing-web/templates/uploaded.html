@@ -1,0 +1,235 @@
+{% extends "layout.html" %} {% block body %}
+
+<style>
+    body{
+        background:#a38d68;
+        height: 60%;
+    }
+    h2 {
+        border: 0.5rem outset #F5F5F5;
+        outline: 0.5rem solid #3F2305;
+        box-shadow: 0 0 0 1rem #DFD7BF;
+        border-radius: 12px;
+        font: bold 1rem sans-serif;
+        margin: 2rem;
+        padding: 1rem;
+        outline-offset: 0.5rem;
+    }
+    h3 {
+        margin-top: 50px;
+        margin-bottom: 50px;
+        font-family: cursive;
+        font-weight: bolder;
+        font-size: 50px;
+    }
+    .buttoncol {
+        background-color: #3F2305;
+        color: #F5F5F5;
+    }
+    .buttoncol:hover{
+        background-color: #a38d68;
+    }
+    #gradient {
+        border: 30px solid;
+        border-image: repeating-linear-gradient(45deg, #D7C0AE, #9BABB8, #EEE3CB 30px) 60;
+        padding: 10px;
+    }
+    .scroll {
+        padding: 0rem;
+        max-height: 60%;
+        overflow: auto; /* Membuat scrollbar hanya di sisi kiri */
+    }
+</style>
+
+<div style="background-color: #F5F5F5;" class="text-center">
+    <div style="margin-top: 20px; height: 60%;" class="row">
+        <div class="col-md-6">
+            <h3>Filter Menu</h3>
+            <div class="scroll">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 border">
+                            <h2>Umum</h2>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <form id="" action="{{ url_for('normal') }}" method="POST" enctype="multipart/form-data">
+                                            <button type="submit" class="btn buttoncol btn-block">Normal</button>
+                                        </form>
+                                    </div>
+                                    <div class="col-md-6 mb-3 mx-0">
+                                        <form id="" action="{{ url_for('grayscale') }}" method="POST" enctype="multipart/form-data">
+                                            <button type="submit" class="btn buttoncol btn-block">Grayscale</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <form id="" action="{{ url_for('zoomin') }}" method="POST" enctype="multipart/form-data">
+                                            <button type="submit" class="btn buttoncol btn-block">Zoom In</button>
+                                        </form>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <form id="" action="{{ url_for('zoomout') }}" method="POST" enctype="multipart/form-data">
+                                            <button type="submit" class="btn buttoncol btn-block">Zoom Out</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 border">
+                            <h2>Pergeseran</h2>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <form id="" action="{{ url_for('move_left') }}" method="POST" enctype="multipart/form-data">
+                                            <button type="submit" class="btn buttoncol btn-block">Geser Kiri</button>
+                                        </form>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <form id="" action="{{ url_for('move_right') }}" method="POST" enctype="multipart/form-data">
+                                            <button type="submit" class="btn buttoncol btn-block">Geser Kanan</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <form id="" action="{{ url_for('move_up') }}" method="POST" enctype="multipart/form-data">
+                                            <button type="submit" class="btn buttoncol btn-block">Geser Atas</button>
+                                        </form>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <form id="" action="{{ url_for('move_down') }}" method="POST" enctype="multipart/form-data">
+                                            <button type="submit" class="btn buttoncol btn-block">Geser Bawah</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 border">
+                            <h2>Penerangan</h2>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <form id="" action="{{ url_for('brightness_multiplication') }}" method="POST" enctype="multipart/form-data">
+                                            <button type="submit" class="btn buttoncol btn-block">Terang (*)</button>
+                                        </form>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <form id="" action="{{ url_for('brightness_division') }}" method="POST" enctype="multipart/form-data">
+                                            <button type="submit" class="btn buttoncol btn-block">Gelap (/)</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <form id="" action="{{ url_for('brightness_addition') }}" method="POST" enctype="multipart/form-data">
+                                            <button type="submit" class="btn buttoncol btn-block">Terang (+)</button>
+                                        </form>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <form id="" action="{{ url_for('brightness_substraction') }}" method="POST" enctype="multipart/form-data">
+                                            <button type="submit" class="btn buttoncol btn-block">Gelap (-)</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 border">
+                            <h2>Filter Gambar</h2>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <form id="" action="{{ url_for('blur') }}" method="POST" enctype="multipart/form-data">
+                                            <button type="submit" class="btn buttoncol btn-block">Blur</button>
+                                        </form>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <form id="" action="{{ url_for('sharpening') }}" method="POST" enctype="multipart/form-data">
+                                            <button type="submit" class="btn buttoncol btn-block">Sharpening</button>
+                                        </form>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <form id="" action="{{ url_for('edge_detection') }}" method="POST" enctype="multipart/form-data">
+                                            <button type="submit" class="btn buttoncol btn-block">Edge Detection</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 border">
+                            <h2>Analisis Gambar</h2>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12 mb-3">
+                                        <form id="" action="{{ url_for('histogram_rgb') }}" method="POST" enctype="multipart/form-data">
+                                            <button type="submit" class="btn buttoncol btn-block">Histogram</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 border">
+                            <h2>Pemrosesan Gambar</h2>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12 mb-3">
+                                        <form id="" action="{{ url_for('histogram_equalizer') }}" method="POST" enctype="multipart/form-data">
+                                            <button type="submit" class="btn buttoncol btn-block">Histogram Equalizer</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 border" style="margin: 0 auto;">
+                            <h2>Segmentation</h2>
+                            <div class="p-2 flex-fill bd-highlight">
+                                <form id="" action="{{ url_for('thresholding') }}" method="POST" enctype="multipart/form-data">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <th>Batas Bawah</th>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <th>Batas Atas</th>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <td><input type="number" name="lower_thres" placeholder="0-255"></td>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <td><input type="number" name="upper_thres" placeholder="0-255"></td>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12 mb-3">
+                                                <td colspan="3"><button type="submit" class="btn buttoncol">Thresholding</button></td>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div style="background-color: #F5F5F5; margin-top: 0;" class="">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3>Processed Image</h3>
+                            <img id="gradient" class="img-fluid" src="{{ url_for('static', filename=file_path) }}" alt="image here" width="500">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+</div>
+
+{% endblock %}

@@ -1,0 +1,95 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+<style>
+    body{
+        background:#a38d68;
+    }
+    .card{
+        border:none;
+        position:relative;
+        overflow:hidden;
+        border-radius:8px;
+        cursor:pointer;
+    }
+    .card:before{   
+        content:"";
+        position:absolute;
+        left:0;
+        top:0;
+        width:4px;
+        height:100%;
+        background-color:#fae8d2;
+        transform:scaleY(1);
+        transition:all 0.5s;
+        transform-origin: bottom
+    }
+    .card:after{
+        content:"";
+        position:absolute;
+        left:0;
+        top:0;
+        width:4px;
+        height:100%;
+        background-color:#454545;
+        transform:scaleY(0);
+        transition:all 0.5s;
+        transform-origin: bottom
+    }
+    .card:hover::after{
+        transform:scaleY(1);
+    }
+    .fonts{
+        font-size:11px;
+    }
+    .social-list{
+        display:flex;
+        list-style:none;
+        justify-content:center;
+        padding:0;
+    }
+    .social-list li{
+        padding:10px;
+        color:#454545;
+        font-size:19px;
+    }
+    .buttons button:nth-child(1){
+        border:1px solid #454545 !important;
+        color:#454545;
+        height:40px;
+    }
+    .buttons button:nth-child(1):hover{
+        border:1px solid #454545 !important;
+        color:#fff;
+        height:40px;
+        background-color:#454545;
+    }
+    .buttons button:nth-child(2){
+        border:1px solid #454545 !important;
+        background-color:#454545;
+        color:#fff;
+            height:40px;
+    }
+</style>
+
+<div class="container mt-5">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-7">
+            <div class="card p-3 py-4">
+                <div class="text-center">
+                    <img src="/static/img/me.JPG" width="100" class="rounded-circle">
+                </div>
+                <div class="text-center mt-3">
+                    <span class="bg-secondary p-1 px-4 rounded text-white">Pengolahan Citra Digital</span>
+                    <h5 class="mt-2 mb-0">Annisa Dinda Gantini</h5>
+                    <span>3A - D4</span>
+                    <div class="buttons">
+                        <a class="btn btn-outline-primary px-4" href="https://github.com/annisaadg" target="_blank" >GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

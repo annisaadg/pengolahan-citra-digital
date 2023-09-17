@@ -1,0 +1,199 @@
+{% extends "layout.html" %} {% block body %}
+
+<style>
+    body{
+        background:#a38d68;
+        height: 60%;
+    }
+    h1 {
+        margin-top: 50px;
+        margin-bottom: 50px;
+        font-family: cursive;
+        font-weight: bolder;
+        font-size: 50px;
+    }
+    h2 {
+        border: 0.5rem outset #F5F5F5;
+        outline: 0.5rem solid #3F2305;
+        box-shadow: 0 0 0 1rem #DFD7BF;
+        border-radius: 12px;
+        font: bold 1rem sans-serif;
+        margin: 2rem;
+        padding: 1rem;
+        outline-offset: 0.5rem;
+    }
+    h3 {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        font-family: cursive;
+        font-weight: bolder;
+        font-size: 20px;
+    }
+    .buttoncol {
+        background-color: #3F2305;
+        color: #F5F5F5;
+    }
+    .buttoncol:hover{
+        background-color: #a38d68;
+    }
+    #gradient {
+        border: 30px solid;
+        border-image: repeating-linear-gradient(45deg, #D7C0AE, #9BABB8, #EEE3CB 30px) 60;
+        padding: 10px;
+    }
+    .scroll {
+        padding: 0rem;
+        max-height: 60%;
+        overflow: auto; /* Membuat scrollbar hanya di sisi kiri */
+    }
+</style>
+
+<div style="background-color: #F5F5F5;" class="text-center">
+    <div style="margin-top: 20px; height: 60%;" class="row">
+        <div class="col-md-6">
+            <h1>Filter Menu</h1>
+            <div class="scroll">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 border">
+                            <h2>Umum</h2>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <form id="" action="{{ url_for('normal') }}" method="POST" enctype="multipart/form-data">
+                                            <button type="submit" class="btn buttoncol btn-block">Normal</button>
+                                        </form>
+                                    </div>
+                                    <div class="col-md-6 mb-3 mx-0">
+                                        <form id="" action="{{ url_for('grayscale') }}" method="POST" enctype="multipart/form-data">
+                                            <button type="submit" class="btn buttoncol btn-block">Grayscale</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <form id="" action="{{ url_for('zoomin') }}" method="POST" enctype="multipart/form-data">
+                                            <button type="submit" class="btn buttoncol btn-block">Zoom In</button>
+                                        </form>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <form id="" action="{{ url_for('zoomout') }}" method="POST" enctype="multipart/form-data">
+                                            <button type="submit" class="btn buttoncol btn-block">Zoom Out</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 border">
+                            <h2>Pergeseran</h2>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <form id="" action="{{ url_for('move_left') }}" method="POST" enctype="multipart/form-data">
+                                            <button type="submit" class="btn buttoncol btn-block">Geser Kiri</button>
+                                        </form>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <form id="" action="{{ url_for('move_right') }}" method="POST" enctype="multipart/form-data">
+                                            <button type="submit" class="btn buttoncol btn-block">Geser Kanan</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <form id="" action="{{ url_for('move_up') }}" method="POST" enctype="multipart/form-data">
+                                            <button type="submit" class="btn buttoncol btn-block">Geser Atas</button>
+                                        </form>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <form id="" action="{{ url_for('move_down') }}" method="POST" enctype="multipart/form-data">
+                                            <button type="submit" class="btn buttoncol btn-block">Geser Bawah</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 border">
+                            <h2>Penerangan</h2>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <form id="" action="{{ url_for('brightness_multiplication') }}" method="POST" enctype="multipart/form-data">
+                                            <button type="submit" class="btn buttoncol btn-block">Terang (*)</button>
+                                        </form>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <form id="" action="{{ url_for('brightness_division') }}" method="POST" enctype="multipart/form-data">
+                                            <button type="submit" class="btn buttoncol btn-block">Gelap (/)</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <form id="" action="{{ url_for('brightness_addition') }}" method="POST" enctype="multipart/form-data">
+                                            <button type="submit" class="btn buttoncol btn-block">Terang (+)</button>
+                                        </form>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <form id="" action="{{ url_for('brightness_substraction') }}" method="POST" enctype="multipart/form-data">
+                                            <button type="submit" class="btn buttoncol btn-block">Gelap (-)</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 border">
+                            <h2>Analisis Gambar</h2>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12 mb-3">
+                                        <form id="" action="{{ url_for('histogram_rgb') }}" method="POST" enctype="multipart/form-data">
+                                            <button type="submit" class="btn buttoncol btn-block">Histogram</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div style="background-color: #F5F5F5; margin-top: 0;" class="">
+                <div class="container">
+                    <div class="row">
+                        {% if file_paths[2] %}
+                        <div class="col-md-6">
+                            <h3>Image RGB</h3>
+                            <img id="gradient" class="img-fluid" src="{{ url_for('static', filename='img/img_now.jpg') }}" alt="image here">
+                        </div>
+                        <div class="col-md-6">
+                            <h3>Red Histogram</h3>
+                            <img id="gradient" class="img-fluid" src="{{ url_for('static', filename=file_paths[0]) }}" alt="image here">
+                        </div>
+                        <div class="col-md-6">
+                            <h3>Green Histogram</h3>
+                            <img id="gradient" class="img-fluid" src="{{ url_for('static', filename=file_paths[1]) }}" alt="image here">
+                        </div>
+                        <div class="col-md-6">
+                            <h3>Blue Histogram</h3>
+                            <img id="gradient" class="img-fluid" src="{{ url_for('static', filename=file_paths[2]) }}" alt="image here">
+                        </div>
+                        {% else %}
+                        <div class="col-md-6">
+                            <h3>Image Greyscaled</h3>
+                            <img id="gradient" class="img-fluid" src="{{ url_for('static', filename='img/img_now.jpg') }}" alt="image here">
+                        </div>
+                        <div class="col-md-6">
+                            <h3>Black Histogram</h3>
+                            <img id="gradient" class="img-fluid" src="{{ url_for('static', filename=file_paths[0]) }}" alt="image here">
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
